@@ -3,7 +3,7 @@
 # See documetation at https://docs.python.org/3/library/argparse.html
 import argparse as ap
 import logging
-from makeDigikeyBOM import makeDigikeyBOM
+from makeBOMCSV import makeBOMCSV
 NUM_PROCESSES = 30  # Maximum number of parallel web-scraping processes.
 
 logging.basicConfig(level=logging.DEBUG)
@@ -21,7 +21,7 @@ def openInputFile(inputFilename):
 ##################################################################
 def getUserInput():
     parser = ap.ArgumentParser(
-        description='Build BoM csv file for a KiCAD project.')
+    description='Build BoM csv file for a KiCAD project.')
     # See https://docs.python.org/3/library/argparse.html#name-or-flags why -i or --input
     #
     # The full path and name to the bom2csv file must be given.
@@ -63,15 +63,15 @@ def main():
     #outputFrom_bom2csv = openInputFile(args.bom2csv)
     outputFrom_bom2csv = openInputFile('/Users/margaret/Documents/EnergyMonitoring/HappyDayNeighbors/HappyDay_Energy_PCB/HappyDay_Energy_PCB.xml')
     #jellyBeanFile = openInputFile(args.jellybean)
-    jellyBeanFile = openInputFile('/Users/margaret/Documents/EnergyMonitoring/HappyDayNeighbors/HappyDay_Energy_PCB/BoM/JBParts.csv')
+    jellyBeanFile = openInputFile('/Users/margaret/Documents/EnergyMonitoring/HappyDayNeighbors/HappyDay_Energy_PCB/JBParts.csv')
     #if args.outdir != None and os.path.exists(args.outdir):
-    outdir = '/Users/margaret/Documents/EnergyMonitoring/HappyDayNeighbors/HappyDay_Energy_PCB/BoM'
+    outdir = '/Users/margaret/Documents/EnergyMonitoring/HappyDayNeighbors/HappyDay_Energy_PCB'
     # if args.outdir != None and os.path.exists(args.outdir):
     #     makeDigikeyBOM(outputFrom_bom2csv,jellyBeanFile,args.outdir,args.num_processes)
     # else:
     #     logstr = 'The output directory path does not exist'
     #     logging.error(logstr,exc_info=True)
     #     exit
-    makeDigikeyBOM(outputFrom_bom2csv,jellyBeanFile,outdir,NUM_PROCESSES)
+    makeBOMCSV(outputFrom_bom2csv,jellyBeanFile,outdir,NUM_PROCESSES)
 if __name__ == '__main__':
     main()
